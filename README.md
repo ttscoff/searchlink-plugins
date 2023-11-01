@@ -1,7 +1,7 @@
 # SearchLink Plugins
 
 
-A collection of plugins for [SearchLink](https://brettterpstra.com/projects/searchlink/ "SearchLink")
+A collection of plugins for [SearchLink](https://brettterpstra.com/projects/searchlink/ "SearchLink").
 
 ## Installation
 
@@ -12,6 +12,12 @@ $ mkdir -p ~/.local/searchlink
 $ cd ~/.local/searchlink
 $ git clone git@github.com:ttscoff/searchlink-plugins.git plugins
 ```
+
+> If you intend to develop your own plugins or make modifications to existing ones, fork the repo first and close that to your local drive, allowing you to make pull requests from your fork.
+
+## About Plugins
+
+All of [SearchLink's searches](https://github.com/ttscoff/searchlink/tree/main/lib/searchlink/searches) are defined as [plugins](https://github.com/ttscoff/searchlink/wiki/Plugins). You can duplicate any of them into the plugins folder and override default functionality, or use them as examples for developing your own.
 
 ## Plugins
 
@@ -42,4 +48,4 @@ This is a port of a TextExpander snippet I use. It takes a natural language date
 
 ## Contributing
 
-Use the sample code in `lyrics.rb` to generate your own plugins. Feel free to fork and submit a PR to this repository if you create something you'd like to share!
+Use the sample code in `lyrics.rb` ([documented in the SearchLink wiki](https://github.com/ttscoff/searchlink/wiki/Plugins)) to generate your own plugins. Feel free to fork and submit a PR to this repository if you create something you'd like to share!
