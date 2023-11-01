@@ -9,7 +9,9 @@ class DateUtils
 
   def parsedate(date, fmt, unpad: false)
     cmd = "date_default_timezone_set('#{@time_zone}');echo strftime('%F',strtotime('#{date}'));"
-    res = `php -r "#{cmd}" 2> /dev/null`
+    dirs = %w[ /usr/bin/ /usr/local/bin/ /opt/homebrew/bin ]
+    php = dirs.filter { |d| File.directory?(d) && File.exist?(File.join(d, 'php')) }.first
+    res = `#{php}php -r "#{cmd}" 2> /dev/null`
     date = Time.parse(res)
     parsed = date.strftime(fmt).gsub(/%o/, ordinal(date.strftime('%e')))
     parsed.gsub!(%r{(^|-|/|\s)0}, '\1') if unpad
