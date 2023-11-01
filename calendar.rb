@@ -41,16 +41,16 @@ module SL
         when /days?/
           case string
           when /1?[0-9] \d{4}$/
-            `cal #{string} | awk 'NF {DAYS = $NF}; END {print DAYS}'`
+            `cal -h #{string} | awk 'NF {DAYS = $NF}; END {print DAYS}'`
           else
-            `cal | awk 'NF {DAYS = $NF}; END {print DAYS}'`
+            `cal -h | awk 'NF {DAYS = $NF}; END {print DAYS}'`
           end
         when /cal/
           case string
           when /1?[0-9] \d{4}$/
-            `cal #{string}`
+            `cal -h #{string}`
           else
-            `cal`
+            `cal -h`
           end
         end
       end
