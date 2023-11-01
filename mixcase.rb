@@ -18,7 +18,7 @@ module SL
       end
 
       def mix_case(string)
-        string.split(//).map { |s| rand(2) == 1 ? s.upcase : s.downcase }
+        string.split(//).map { |s| rand(20000) % 2 == 1 ? s.upcase : s.downcase }
       end
     end
 
