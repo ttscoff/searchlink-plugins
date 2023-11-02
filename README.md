@@ -21,19 +21,19 @@ All of [SearchLink's searches](https://github.com/ttscoff/searchlink/tree/main/l
 
 ## Plugins
 
-**Lyrics**
+### Lyrics
 
 This plugin will search <https://genius.com> for a song, returning either a link (`!lyric`) or embedding the actual lyrics (`!lyrice`). It demonstrates both search and embed functionality, and is fully commented to serve as an example plugin.
 
-**MixCase**
-
-This plugin is a text filter that will turn `!mix A string of text` into `A STRInG of TExT`, randomly capitalizing characters. It's just to demonstrate how easily a text filter can be implemented.
-
-**Calendar**
+### Calendar
 
 Another example of a text filter. This one can insert a Markdown calendar for any month and year. You can define the month and year like `!cal 5 2024` to get a calendar for May, 2024. If you use `!cal now` it will insert a calendar for the current month and year. It can also print how many days are in a month with `!days 2 2024` to show how many days are in October. Silly, and would probably be better as a TextExpander snippet, but I'm just experimenting with extending SearchLink.
 
-**MakeADate**
+### ManPage
+
+This plugin searches mapages.org for a matching command and returns the url, including command name and man section, e.g. `https://manpages.org/lsof/8`, as well as a title with a brief description of the command. So running SearchLink on `!man lsof` would return `[lsof](https://manpages.org/lsof/8 "lsof (8): list open files")`. If the search term contains multiple words, they'll be parsed individually until one of the words gets at least a partial search result, the shortest of which will be used.
+
+### MakeADate
 
 This is a port of a TextExpander snippet I use. It takes a natural language date and inserts a formatted date. It provides the following formats:
 
@@ -44,7 +44,11 @@ This is a port of a TextExpander snippet I use. It takes a natural language date
 | `!diso tomorrow 8am` | 2023-11-02 08:00 |
 | `!dlong tomorrow 8am` | Thursday, November 2nd, 2023 at 8:00am|
 
-**This plugin requires that PHP be installed on the system, either with the Apple Command Line Utilties (I think), or with Homebrew (`brew install php`).**
+***This plugin requires that PHP be installed on the system, either with the Apple Command Line Utilties (I think), or with Homebrew (`brew install php`).***
+
+### MixCase
+
+This plugin is a text filter that will turn `!mix A string of text` into `A STRInG of TExT`, randomly capitalizing characters. It's just to demonstrate how easily a text filter can be implemented.
 
 ## Contributing
 

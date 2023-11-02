@@ -28,7 +28,7 @@ module SL
       #             search
       #
       def search(_, search_terms, link_text)
-        url, title = find_man_page(search_terms.split(/ /).first)
+        url, title = find_man_page(search_terms)
         url ? [url, title, link_text] : [false, false, link_text]
       end
 
@@ -38,16 +38,20 @@ module SL
       # @param      term  [String] the terms to search for
       # @return     [Array] the url and title for the search
       #
-      def find_man_page(term)
-        autocomplete = "https://manpages.org/pagenames/autocomplete_page_name_name?term=#{ERB::Util.url_encode(term)}"
-        body = `/usr/bin/curl -sSL '#{autocomplete}'`
-        data = JSON.parse(body)
-        data.delete_if { |d| d['locale'] != 'en' }
-        shortest = data.min_by { |d| d['permalink'].length }
-        man = shortest['permalink']
-        cat = shortest['category_id']
-        url = "https://manpages.org/#{man}/#{cat}"
-        [url, get_man_title(url)]
+      def find_man_page(terms)
+        terms.split(/ /).each do |term|
+          autocomplete = "https://manpages.org/pagenames/autocomplete_page_name_name?term=#{ERB::Util.url_encode(term)}"
+          body = `/usr/bin/curl -sSL '#{autocomplete}'`
+          data = JSON.parse(body)
+          next if data.count == 0
+
+          data.delete_if { |d| d['locale'] != 'en' }
+          shortest = data.min_by { |d| d['permalink'].length }
+          man = shortest['permalink']
+          cat = shortest['category_id']
+          url = "https://manpages.org/#{man}/#{cat}"
+          return [url, get_man_title(url)]
+        end
       rescue StandardError
         false
       end
