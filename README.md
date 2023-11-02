@@ -27,7 +27,7 @@ This plugin will search <https://genius.com> for a song, returning either a link
 
 ### Calendar
 
-Another example of a text filter. This one can insert a Markdown calendar for any month and year. You can define the month and year like `!cal 5 2024` to get a calendar for May, 2024. If you use `!cal now` it will insert a calendar for the current month and year. It can also print how many days are in a month with `!days 2 2024` to show how many days are in October. Silly, and would probably be better as a TextExpander snippet, but I'm just experimenting with extending SearchLink.
+Another example of a text filter. This one can insert a Markdown calendar for any month and year. You can define the month and year like `!cal 5 2024` to get a calendar for May, 2024. If you use `!cal now` it will insert a calendar for the current month and year. It can also print how many days are in a month with `!days 2 2024` to show how many days are in February, 2024. Silly, and would probably be better as a TextExpander snippet, but I'm just experimenting with extending SearchLink.
 
 ### ManPage
 
