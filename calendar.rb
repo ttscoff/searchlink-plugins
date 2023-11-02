@@ -27,7 +27,7 @@ module SL
           output = []
           header = "[#{lines.shift.strip}]"
           output << markdownify_line(lines.shift)
-          output << "|---|---|---|---|---|---|---|"
+          output << '|---|---|---|---|---|---|---|'
           output.concat(lines.map { |l| markdownify_line(l) })
           output << header
           output.join("\n")
