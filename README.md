@@ -21,17 +21,25 @@ All of [SearchLink's searches](https://github.com/ttscoff/searchlink/tree/main/l
 
 ## Plugins
 
-### Lyrics
-
-This plugin will search <https://genius.com> for a song, returning either a link (`!lyric`) or embedding the actual lyrics (`!lyrice`). It demonstrates both search and embed functionality, and is fully commented to serve as an example plugin.
-
 ### Calendar
 
 Another example of a text filter. This one can insert a Markdown calendar for any month and year. You can define the month and year like `!cal 5 2024` to get a calendar for May, 2024. If you use `!cal now` it will insert a calendar for the current month and year. It can also print how many days are in a month with `!days 2 2024` to show how many days are in February, 2024. Silly, and would probably be better as a TextExpander snippet, but I'm just experimenting with extending SearchLink.
 
-### ManPage
+### Custom Google
 
-This plugin searches mapages.org for a matching command and returns the url, including command name and man section, e.g. `https://manpages.org/lsof/8`, as well as a title with a brief description of the command. So running SearchLink on `!man lsof` would return `[lsof](https://manpages.org/lsof/8 "lsof (8): list open files")`. If the search term contains multiple words, they'll be parsed individually until one of the words gets at least a partial search result, the shortest of which will be used.
+This plugin demonstrates adding your own custom search engine through Google. Create a [custom engine here](https://programmablesearchengine.google.com/controlpanel/all) to search specific pages/sites, then modify the plugin according to the comments at the top to create your own custom site search.
+
+Requires a [Google API key](https://github.com/ttscoff/searchlink/wiki/Using-Google-Search).
+
+### IMDB
+
+This plugin uses a custom site search from Google Programmable Search to search IMDB, actors, or titles. Just another demo of how to use custom engines to create plugins. Requires a [Google API key](https://github.com/ttscoff/searchlink/wiki/Using-Google-Search).
+
+Adds searches `!imdb`, `!imdba` (actor search), and `!imdbt` (tv/movie title search).
+
+### Lyrics
+
+This plugin will search <https://genius.com> for a song, returning either a link (`!lyric`) or embedding the actual lyrics (`!lyrice`). It demonstrates both search and embed functionality, and is fully commented to serve as an example plugin.
 
 ### MakeADate
 
@@ -45,6 +53,10 @@ This is a port of a TextExpander snippet I use. It takes a natural language date
 | `!dlong tomorrow 8am` | Thursday, November 2nd, 2023 at 8:00am|
 
 ***This plugin requires that PHP be installed on the system, either with the Apple Command Line Utilties (I think), or with Homebrew (`brew install php`).***
+
+### ManPage
+
+This plugin searches mapages.org for a matching command and returns the url, including command name and man section, e.g. `https://manpages.org/lsof/8`, as well as a title with a brief description of the command. So running SearchLink on `!man lsof` would return `[lsof](https://manpages.org/lsof/8 "lsof (8): list open files")`. If the search term contains multiple words, they'll be parsed individually until one of the words gets at least a partial search result, the shortest of which will be used.
 
 ### MixCase
 
