@@ -30,9 +30,9 @@ module SL
 
       def get_lyrics(url)
         if SL::URL.valid_link?(url)
-          body = `curl -SsL #{url}`
+          body = SL::Util.curlHTML(url)[:body]
 
-          matches = body.scan(%r{class="Lyrics__Container-.*?>(.*?)</div><div class="RightSidebar})
+          matches = body.scan(%r{class="Lyrics__Container-.*?>(.*?)</div><div class="LyricsFooter})
 
           lyrics = matches.join("\n")
 
