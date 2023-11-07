@@ -45,7 +45,7 @@ module SL
         body = `curl -SsL '#{url}'`
         json = JSON.parse(body)
 
-        return SL.ddg(terms, false) unless json['queries']['request'][0]['totalResults'].to_i.positive?
+        return SL.ddg(terms, link_text) unless json['queries']['request'][0]['totalResults'].to_i.positive?
 
         result = json['items'][0]
         return false if result.nil?

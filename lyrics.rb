@@ -23,7 +23,7 @@ module SL
             false
           end
         else
-          url, title = SSL.ddg("site:genius.com #{search_terms}", link_text)
+          url, title = SL.ddg("site:genius.com #{search_terms}", link_text)
           [url, title, link_text]
         end
       end
