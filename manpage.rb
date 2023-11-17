@@ -41,9 +41,8 @@ module SL
       def find_man_page(terms)
         terms.split(/ /).each do |term|
           autocomplete = "https://manpages.org/pagenames/autocomplete_page_name_name?term=#{ERB::Util.url_encode(term)}"
-          body = `/usr/bin/curl -sSL '#{autocomplete}'`
-          data = JSON.parse(body)
-          next if data.count == 0
+          data = Curl::Json.new(autocomplete).json
+          next if data.count.zero?
 
           data.delete_if { |d| d['locale'] != 'en' }
           shortest = data.min_by { |d| d['permalink'].length }
