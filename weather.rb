@@ -7,7 +7,7 @@ module SL
     class << self
       def settings
         {
-          trigger: '(fore(cast)?|cur(rent)?|wea(t(her)?)?)',
+          trigger: '(for((e(cast)?)?|cur(r(ent)?)?|wea(t(her)?)?)',
           searches: [
             ['weather', 'Embed Current Weather'],
             ['forecast', 'Embed Weather Forecast']
@@ -29,7 +29,6 @@ module SL
         clock = Time.parse(data['location']['localtime'])
         date = clock.strftime('%Y-%m-%d')
         time = clock.strftime('%I:%M %p')
-
 
         raise StandardError, 'Missing conditions' unless data['current']
 
