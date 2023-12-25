@@ -55,7 +55,7 @@ module SL
           output << "Currently: #{curr_temp} and #{curr_condition}"
           output << ''
 
-          output.concat(forecast_to_markdown(forecast['hour']), temp_in)
+          output.concat(forecast_to_markdown(forecast['hour'], temp_in))
         end
 
         output.empty? ? false : ['embed', output.join("\n"), link_text]
