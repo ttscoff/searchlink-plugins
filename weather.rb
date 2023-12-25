@@ -49,7 +49,7 @@ module SL
 
         case search_type
         when /^[wc]/
-          output << "Weather for #{loc} on #{date} at #{time}: #{curr_temp} and #{curr_condition}"
+          output << "Weather for #{loc} on #{date} at #{time}: #{curr_temp} and #{curr_condition}  "
         else
           output << "Forecast for #{loc} on #{day}: #{condition} #{high}/#{low}"
           output << "Currently: #{curr_temp} and #{curr_condition}"
