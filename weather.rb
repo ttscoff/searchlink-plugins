@@ -7,7 +7,7 @@ module SL
     class << self
       def settings
         {
-          trigger: '(for((e(cast)?)?|cur(r(ent)?)?|wea(t(her)?)?)',
+          trigger: '(for(e(cast)?)?|cur(r(ent)?)?|wea(t(her)?)?)',
           searches: [
             ['weather', 'Embed Current Weather'],
             ['forecast', 'Embed Weather Forecast']
@@ -17,6 +17,7 @@ module SL
 
       def search(search_type, search_terms, link_text)
         api_key = SL.config['weather_api_key']
+        temp_in = SL.config['weather_temp_in'] =~ /^c/ ? 'temp_c' : 'temp_f'
         zip = search_terms.url_encode
         url = "http://api.weatherapi.com/v1/forecast.json?key=#{api_key}&q=#{zip}&aqi=no"
         res = Curl::Json.new(url)
@@ -32,7 +33,7 @@ module SL
 
         raise StandardError, 'Missing conditions' unless data['current']
 
-        curr_temp = data['current']['temp_f']
+        curr_temp = data['current'][temp_in]
         curr_condition = data['current']['condition']['text']
 
         raise StandardError, 'Missing forecast' unless data['forecast']
@@ -40,8 +41,8 @@ module SL
         forecast = data['forecast']['forecastday'][0]
 
         day = forecast['date']
-        high = forecast['day']['maxtemp_f']
-        low = forecast['day']['mintemp_f']
+        high = forecast['day']["max#{temp_in}"]
+        low = forecast['day']["min#{temp_in}"]
         condition = forecast['day']['condition']['text']
 
         output = []
@@ -54,22 +55,22 @@ module SL
           output << "Currently: #{curr_temp} and #{curr_condition}"
           output << ''
 
-          output.concat(forecast_to_markdown(forecast['hour']))
+          output.concat(forecast_to_markdown(forecast['hour']), temp_in)
         end
 
         output.empty? ? false : ['embed', output.join("\n"), link_text]
       end
 
-      def forecast_to_markdown(hours)
+      def forecast_to_markdown(hours, temp_in)
         output = []
         temps = [
-          { temp: hours[8]['temp_f'], condition: hours[8]['condition']['text'] },
-          { temp: hours[10]['temp_f'], condition: hours[10]['condition']['text'] },
-          { temp: hours[12]['temp_f'], condition: hours[12]['condition']['text'] },
-          { temp: hours[14]['temp_f'], condition: hours[14]['condition']['text'] },
-          { temp: hours[16]['temp_f'], condition: hours[16]['condition']['text'] },
-          { temp: hours[18]['temp_f'], condition: hours[18]['condition']['text'] },
-          { temp: hours[19]['temp_f'], condition: hours[20]['condition']['text'] }
+          { temp: hours[8][temp_in], condition: hours[8]['condition']['text'] },
+          { temp: hours[10][temp_in], condition: hours[10]['condition']['text'] },
+          { temp: hours[12][temp_in], condition: hours[12]['condition']['text'] },
+          { temp: hours[14][temp_in], condition: hours[14]['condition']['text'] },
+          { temp: hours[16][temp_in], condition: hours[16]['condition']['text'] },
+          { temp: hours[18][temp_in], condition: hours[18]['condition']['text'] },
+          { temp: hours[19][temp_in], condition: hours[20]['condition']['text'] }
         ]
 
         # Hours
