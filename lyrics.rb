@@ -72,9 +72,9 @@ module SL
       def js_embed(url)
         if SL::URL.valid_link?(url)
           body = Curl::Html.new(url).body
-          api_path = body.match(%r{\\"apiPath\\":\\"/songs/(.*?)\\"})[1]
+          api_path = body.match(%r{\\"apiPath\\":\\"(/songs/.*?)\\"})[1]
           id = api_path.sub(/.*?(\d+)$/, '\1')
-          title = body.match(/_sf_async_config.title = '(.*?) \| Genius Lyrics'/)[1]
+          title = body.match(/_sf_async_config.title = '(.*?) \| Genius Lyrics'/)[1].gsub(/\\/, '').sub(/ Lyrics$/, '').scrub
 
           <<~EOEMBED
             <div id='rg_embed_link_#{id}' class='rg_embed_link' data-song-id='#{id}'>
@@ -94,7 +94,7 @@ module SL
           # `curl -SsL` is faster and easier. Curl::Html.new(url) returns a
           # new object containing :body
           body = Curl::Html.new(url).body
-          title = body.match(/_sf_async_config.title = '(.*?) \| Genius Lyrics'/)[1].gsub(/\\/, '').sub(/ Lyrics$/, '')
+          title = body.match(/_sf_async_config.title = '(.*?) \| Genius Lyrics'/)[1].gsub(/\\/, '').sub(/ Lyrics$/, '').scrub
           matches = body.scan(%r{class="Lyrics__Container-.*?>(.*?)</div><div class="LyricsFooter})
 
           lyrics = matches.join("\n")
