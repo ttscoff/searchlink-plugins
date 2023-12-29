@@ -9,8 +9,8 @@ module SL
         {
           trigger: '(for(e(cast)?)?|cur(r(ent)?)?|wea(t(her)?)?)',
           searches: [
-            ['weather', 'Embed Current Weather'],
-            ['forecast', 'Embed Weather Forecast']
+            [%w[weather current weat wea curr cur], 'Embed Current Weather'],
+            [%w[forecast fore for], 'Embed Weather Forecast']
           ]
         }
       end
