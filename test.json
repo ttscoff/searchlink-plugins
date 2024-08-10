@@ -1,0 +1,10 @@
+{
+    "name": "testscript2",
+    "trigger": "^scr2$",
+    "searches":
+    [
+        "rubytest",
+        "Test Ruby Script Search"
+    ],
+    "script": "test.rb"
+}

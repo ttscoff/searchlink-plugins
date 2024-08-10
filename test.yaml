@@ -1,0 +1,6 @@
+---
+name: test shell script
+trigger: ^scr$
+searches:
+  - [test, "Test Shell Script Search"]
+script: test.sh

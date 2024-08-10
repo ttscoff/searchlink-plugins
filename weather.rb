@@ -6,12 +6,12 @@ module SL
   class WeatherSearch
     class << self
       def settings
+        searches = []
+        %w[weather current weat wea curr cur].each { |s| searches << [s, 'Embed Current Weather'] }
+        %w[forecast fore for].each { |s| searches << [s, 'Embed Weather Forecast'] }
         {
           trigger: '(for(e(cast)?)?|cur(r(ent)?)?|wea(t(her)?)?)',
-          searches: [
-            [%w[weather current weat wea curr cur], 'Embed Current Weather'],
-            [%w[forecast fore for], 'Embed Weather Forecast']
-          ]
+          searches: searches
         }
       end
 
