@@ -15,24 +15,22 @@ module SL
         }
       end
 
-      # Searches for a man page for given command. Only the
-      # first word of the search is used
+      # Searches for a man page for given command. Only the first word of the
+      # search is used. If no man page is found on manpages.org, ss64.com is
+      # used
       #
-      # @param      _             [String] Search type,
-      #                           unused
-      # @param      search_terms  [String] the terms to
-      #                           search for
-      # @param      link_text     [String] the text to use
-      #                           for the link
-      # @return     [Array] the url, title, and link text for the
-      #             search
+      # @param      _             [String] Search type, unused
+      # @param      search_terms  [String] the terms to search for
+      # @param      link_text     [String] the text to use for the link
+      #
+      # @return     [Array] the url, title, and link text for the search
       #
       def search(_, search_terms, link_text)
         url, title = find_man_page(search_terms)
         if url
           [url, title, link_text]
         else
-          SL.ddg("site:ss64.com #{search_terms}", link_text)
+          SL.site_search('ss64.com', search_terms, link_text)
         end
       end
 
