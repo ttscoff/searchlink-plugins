@@ -1,0 +1,15 @@
+{
+  "name": "browsertab",
+  "searches": [
+    ["tabs", "Search Safari tabs"],
+    ["tabsf", "Frontmost safari tab"],
+    ["tabc", "Search Chrome tabs"],
+    ["tabcf", "Frontmost Chrome tab"],
+    ["tabef", "Frontmost Edge tab"],
+    ["tabe", "Search Edge tabs"],
+    ["tabbf", "Frontmost Brave tab"],
+    ["tabb", "Search Brave tabs"]
+  ],
+  "trigger": "^tab[csceb]f?$",
+  "script": "browser_tabs.js"
+}

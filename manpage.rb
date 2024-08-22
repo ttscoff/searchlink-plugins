@@ -29,7 +29,11 @@ module SL
       #
       def search(_, search_terms, link_text)
         url, title = find_man_page(search_terms)
-        url ? [url, title, link_text] : [false, false, link_text]
+        if url
+          [url, title, link_text]
+        else
+          SL.ddg("site:ss64.com #{search_terms}", link_text)
+        end
       end
 
       # Uses manpages.org autocomplete to validate command
@@ -51,6 +55,7 @@ module SL
           url = "https://manpages.org/#{man}/#{cat}"
           return [url, get_man_title(url)]
         end
+        [false, false]
       rescue StandardError
         false
       end
