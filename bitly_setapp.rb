@@ -1,5 +1,30 @@
 # frozen_string_literal: true
-
+# Setapp Bitly Plugin
+# Takes an app name or Setapp URL, adds an affiliate string, and outputs a bit.ly url
+# Requires config:
+# bitly_domain: bit.ly # or custom domain
+# bitly_access_token: xxxxxxxxxxxx # see below
+# bitly_affiliate_string: xxxxxxxxx # see below
+#
+# To get your access token:
+#
+# 1. Log in to bit.ly and go to https://app.bitly.com/settings/api
+# 2. Enter your password and click Generate Token
+# 3. Copy the token into the `bitly_access_token` config line
+#
+# To get your Setapp affiliate string
+#
+# 1. You must have a Setapp affiliate account through impact.com
+# 2. Generate a campaign url for an app landing page
+# 3. Follow the short link provided
+# 4. The browser URL bar will now show the expanded link
+# 5. Copy everything after the & symbol in the url to
+#    the `setapp_affiliate_string` config line
+#
+# Run a search with !set. The input can either be a Setapp app
+# landing page url, or an app name, e.g. `!set marked`,
+# `[jump desktop](!set)`, or `!set https://setapp.com/apps/marked`
+#
 module SL
   # Bit.ly link shortening
   class BitlySetapp
