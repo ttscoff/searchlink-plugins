@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 # Setapp Bitly Plugin
-# Takes an app name or Setapp URL, adds an affiliate string, and outputs a bit.ly url
+# Takes an app name or Setapp URL, adds an affiliate string,
+# and outputs a bit.ly url
+#
 # Requires config:
+#
+# ```yaml
 # bitly_domain: bit.ly # or custom domain
 # bitly_access_token: xxxxxxxxxxxx # see below
 # bitly_affiliate_string: xxxxxxxxx # see below
+# ```
 #
 # To get your access token:
 #
-# 1. Log in to bit.ly and go to https://app.bitly.com/settings/api
+# 1. Log in to bit.ly and go to <https://app.bitly.com/settings/api>
 # 2. Enter your password and click Generate Token
 # 3. Copy the token into the `bitly_access_token` config line
 #
