@@ -8,7 +8,7 @@
 # ```yaml
 # bitly_domain: bit.ly # or custom domain
 # bitly_access_token: xxxxxxxxxxxx # see below
-# bitly_affiliate_string: xxxxxxxxx # see below
+# setapp_affiliate_string: xxxxxxxxx # see below
 # ```
 #
 # To get your access token:
@@ -66,13 +66,13 @@ module SL
           return [false, title]
         end
 
-        unless SL.config.key?('bitly_affiliate_string') && !SL.config['bitly_affiliate_string'].empty?
+        unless SL.config.key?('setapp_affiliate_string') && !SL.config['setapp_affiliate_string'].empty?
           SL.add_error('Setapp affiliate string not configured', 'Missing affiliate string')
           return [false, title]
         end
 
         separator = url =~ /\?/ ? '&' : '?'
-        url = "#{url}#{SL.config['bitly_affiliate_string'].sub(/^[?&]?/, separator)}"
+        url = "#{url}#{SL.config['setapp_affiliate_string'].sub(/^[?&]?/, separator)}"
 
         domain = SL.config.key?('bitly_domain') ? SL.config['bitly_domain'] : 'bit.ly'
         long_url = url.dup
