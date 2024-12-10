@@ -62,6 +62,14 @@ This plugin searches mapages.org for a matching command and returns the url, inc
 
 This plugin is a text filter that will turn `!mix A string of text` into `A STRInG of TExT`, randomly capitalizing characters. It's just to demonstrate how easily a text filter can be implemented.
 
+### Setapp affiliate linking
+
+There are two plugins, bitly_setapp and isgd_setapp that will take an app name that's avaialable on Setapp and turn it into an affiliate link so you can make some money on recommendations. Links are shortened with either bit.ly or is.gd, depending on the plugin. Bit.ly shortening requires an access token.
+
+### Weather
+
+Can output a current conditions with searches !weather and !current, and a forecast with !forecast. All output in Markdown format. Requires a weatherapi.com API key.
+
 ## Contributing
 
 Use the sample code in `lyrics.rb` ([documented in the SearchLink wiki](https://github.com/ttscoff/searchlink/wiki/Plugins)) to generate your own plugins. Feel free to fork and submit a PR to this repository if you create something you'd like to share!
