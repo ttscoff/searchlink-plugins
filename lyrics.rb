@@ -95,7 +95,8 @@ module SL
           # new object containing :body
           body = Curl::Html.new(url).body
           title = body.match(/_sf_async_config.title = '(.*?) \| Genius Lyrics'/)[1].gsub(/\\/, '').sub(/ Lyrics$/, '').scrub
-          matches = body.scan(%r{class="Lyrics__Container-.*?>(.*?)</div><div class="LyricsFooter})
+
+          matches = body.scan(%r{class="Lyrics-\w+-.*?>(.*?)</div><div class="LyricsFooter})
 
           lyrics = matches.join("\n")
 
