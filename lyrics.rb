@@ -101,7 +101,7 @@ module SL
           lyrics = matches.join("\n")
 
           if lyrics
-            lyrics = CGI.unescape(lyrics).gsub(%r{<br/?>}, "  \n").gsub(%r{</?.*?>}, '').gsub(/&#x27;/, "'")
+            lyrics = CGI.unescape(lyrics).gsub(%r{<br/?>}, "  \n").gsub(%r{</?.*?>}, '').gsub(/&#x27;/, "'").gsub(/You might also like/, '')
             "#{title}\n\n#{lyrics.code_indent}\n"
           else
             false

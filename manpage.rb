@@ -8,10 +8,11 @@ module SL
       #
       def settings
         {
-          trigger: 'man',
+          trigger: "x?man",
           searches: [
-            ['man', 'Man Page from manpages.org']
-          ]
+            ["xman", "x-man-page url"],
+            ["man", "Man Page from manpages.org"],
+          ],
         }
       end
 
@@ -19,18 +20,20 @@ module SL
       # search is used. If no man page is found on manpages.org, ss64.com is
       # used
       #
-      # @param      _             [String] Search type, unused
+      # @param      search_type   [String] Search type, unused
       # @param      search_terms  [String] the terms to search for
       # @param      link_text     [String] the text to use for the link
       #
       # @return     [Array] the url, title, and link text for the search
       #
-      def search(_, search_terms, link_text)
+      def search(search_type, search_terms, link_text)
+        return ["x-man-page://#{search_terms.split(" ").first}", "#{search_terms} man page", link_text] if search_type == "xman"
+
         url, title = find_man_page(search_terms)
         if url
           [url, title, link_text]
         else
-          SL.site_search('ss64.com', search_terms, link_text)
+          SL.site_search("ss64.com", search_terms, link_text)
         end
       end
 
@@ -46,10 +49,10 @@ module SL
           data = Curl::Json.new(autocomplete).json
           next if data.count.zero?
 
-          data.delete_if { |d| d['locale'] != 'en' }
-          shortest = data.min_by { |d| d['permalink'].length }
-          man = shortest['permalink']
-          cat = shortest['category_id']
+          data.delete_if { |d| d["locale"] != "en" }
+          shortest = data.min_by { |d| d["permalink"].length }
+          man = shortest["permalink"]
+          cat = shortest["category_id"]
           url = "https://manpages.org/#{man}/#{cat}"
           return [url, get_man_title(url)]
         end
@@ -60,11 +63,11 @@ module SL
 
       def get_man_title(url)
         body = `/usr/bin/curl -sSL '#{url}'`
-        body.match(%r{(?<=<title>).*?(?=</title>)})[0].sub(/^man /, '')
+        body.match(%r{(?<=<title>).*?(?=</title>)})[0].sub(/^man /, "")
       end
     end
 
     # Registers the search with the SL::Searches module
-    SL::Searches.register 'manpage', :search, self
+    SL::Searches.register "manpage", :search, self
   end
 end
