@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # StretchLink Plugin
 # Takes a shortened url and expands it
 #
@@ -23,6 +24,14 @@ module SL
             ["stretch", "Expand URLs with stretchlink.cc"],
             ["str", "Expand URLs with stretchlink.cc"],
           ],
+          config: [
+            {
+              key: "stretchlink",
+              value: { "clean_url" => false, "tidy_amazon" => false },
+              required: true,
+              description: "StretchLink plugin config",
+            },
+          ],
         }
       end
 
@@ -43,9 +52,7 @@ module SL
 
         res = Curl::Json.new(%(https://stretchlink.cc/api/1?#{query.join("&")}))
         json = res.json
-        if json.nil? || json.empty?
-          return [search_terms, nil, link_text]
-        end
+        return [search_terms, nil, link_text] if json.nil? || json.empty?
 
         if json["error"]
           SL.error("StretchLink Error: #{json["error"]}")
@@ -59,9 +66,7 @@ module SL
           end
 
         rtitle = SL::URL.title(url) || res["title"]
-        if link_text.nil? || link_text.empty? || link_text == search_terms
-          link_text = rtitle
-        end
+        link_text = rtitle if link_text.nil? || link_text.empty? || link_text == search_terms
 
         [url, rtitle, link_text]
       end
@@ -73,7 +78,7 @@ module SL
         return url unless uri.host.include?("amazon")
 
         # Extract the product ID from the path
-        match = uri.path.match(/\/dp\/([^\/]*)/)
+        match = uri.path.match(%r{/dp/([^/]*)})
         product_id = match ? match[1] : nil
 
         # Construct the shortened URL if the product ID is found

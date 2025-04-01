@@ -45,12 +45,12 @@ This plugin will search <https://genius.com> for a song, returning either a link
 
 This is a port of a TextExpander snippet I use. It takes a natural language date and inserts a formatted date. It provides the following formats:
 
-| Abbr | Result |
-|------|--------|
-| `!ddate tomorrow 8am` | 2023-11-02 8:00am |
-| `!dshort tomorrow 8am`| 2023-11-2 8:00am |
-| `!diso tomorrow 8am` | 2023-11-02 08:00 |
-| `!dlong tomorrow 8am` | Thursday, November 2nd, 2023 at 8:00am|
+| Abbr                   | Result                                 |
+| ---------------------- | -------------------------------------- |
+| `!ddate tomorrow 8am`  | 2023-11-02 8:00am                      |
+| `!dshort tomorrow 8am` | 2023-11-2 8:00am                       |
+| `!diso tomorrow 8am`   | 2023-11-02 08:00                       |
+| `!dlong tomorrow 8am`  | Thursday, November 2nd, 2023 at 8:00am |
 
 ***This plugin requires that PHP be installed on the system, either with the Apple Command Line Utilties (I think), or with Homebrew (`brew install php`).***
 
@@ -65,6 +65,10 @@ This plugin is a text filter that will turn `!mix A string of text` into `A STRI
 ### Setapp affiliate linking
 
 There are two plugins, bitly_setapp and isgd_setapp that will take an app name that's avaialable on Setapp and turn it into an affiliate link so you can make some money on recommendations. Links are shortened with either bit.ly or is.gd, depending on the plugin. Bit.ly shortening requires an access token.
+
+### StretchLink and Amazon URL tidying
+
+The stretchlink and shorten_amazon plugins will use [StretchLink.cc](https://stretchlink.cc) to expand shortened URLs and tidy up Amazon URLs.
 
 ### Weather
 
