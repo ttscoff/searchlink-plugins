@@ -62,6 +62,10 @@ This plugin searches mapages.org for a matching command and returns the url, inc
 
 This plugin is a text filter that will turn `!mix A string of text` into `A STRInG of TExT`, randomly capitalizing characters. It's just to demonstrate how easily a text filter can be implemented.
 
+### Parallel
+
+This plugin searches the web with [Parallel](https://parallel.ai) through its anonymous Search MCP endpoint, returning the first usable result as a link. No API key is required. Adds the search `!parallel`.
+
 ### Setapp affiliate linking
 
 There are two plugins, bitly_setapp and isgd_setapp that will take an app name that's avaialable on Setapp and turn it into an affiliate link so you can make some money on recommendations. Links are shortened with either bit.ly or is.gd, depending on the plugin. Bit.ly shortening requires an access token.
